@@ -85,4 +85,9 @@ public class StoreService {
         productRepository.addProduct(product);
     }
 
+    public void addSalesman(int id, String name, int salary) {
+        Salesman salesman = new Salesman(id, name, salary);
+        salesmanRepository.addSalesman(salesman);
+    }
+
 }

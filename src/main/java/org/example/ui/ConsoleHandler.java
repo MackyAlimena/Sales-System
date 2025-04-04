@@ -2,6 +2,7 @@ package org.example.ui;
 
 import org.example.service.StoreService;
 import org.example.ui.cases.AddProductCase;
+import org.example.ui.cases.AddSalesmanCase;
 
 import java.util.Scanner;
 
@@ -31,7 +32,8 @@ public class ConsoleHandler {
 
             switch (choice) {
                 case 1 -> new AddProductCase(storeService).execute(scanner);
-                case 2 -> {
+                case 2 -> new AddSalesmanCase(storeService).execute(scanner);
+                case 3 -> {
                     running = false;
                     System.out.println("👋 GoodBye...");
                 }
