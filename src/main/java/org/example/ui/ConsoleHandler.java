@@ -1,6 +1,8 @@
 package org.example.ui;
 
 import org.example.service.StoreService;
+import org.example.ui.cases.AddProductCase;
+
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -28,7 +30,7 @@ public class ConsoleHandler {
             int choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
-                case 1 -> addProduct(scanner);
+                case 1 -> new AddProductCase(storeService).execute(scanner);
                 case 2 -> {
                     running = false;
                     System.out.println("👋 GoodBye...");
