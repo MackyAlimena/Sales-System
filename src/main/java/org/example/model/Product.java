@@ -28,7 +28,7 @@ public class Product {
 
     // Get the product name
     public String getProductName() {
-        return product_name.toLowerCase();
+        return product_name;
     }
 
     // Set the product name
