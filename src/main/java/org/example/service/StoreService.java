@@ -3,13 +3,11 @@ package org.example.service;
 import org.example.Repositories.ProductRepository;
 import org.example.Repositories.SaleRepository;
 import org.example.Repositories.SalesmanRepository;
-import org.example.exceptions.NoSalesRegisteredException;
-import org.example.exceptions.ProductNotFoundException;
-import org.example.exceptions.SaleAlreadyExistsException;
-import org.example.exceptions.SalesmanNotFoundException;
+import org.example.exceptions.*;
 import org.example.model.Product;
 import org.example.model.Sale;
 import org.example.model.Salesman;
+import org.example.model.productCategories.Categories;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -73,6 +71,18 @@ public class StoreService {
         //In this model i consider that a sale is a product sold
         //In a further detailed system, i would add a quantity to sale and a stock for product
         return prices.size() > 2 ? total * 10 / 100 : total * 5 / 100;
+    }
+
+    public void addProduct(int id, String name, int price, String category) throws InvalidCategoryException {
+        Categories cat;
+        try {
+            cat = Categories.valueOf(category.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidCategoryException(category);
+        }
+
+        Product product = new Product(id, name, price, cat);
+        productRepository.addProduct(product);
     }
 
 }
