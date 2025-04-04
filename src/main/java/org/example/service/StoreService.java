@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.Repositories.ProductRepository;
 import org.example.Repositories.SaleRepository;
 import org.example.Repositories.SalesmanRepository;
+import org.example.exceptions.NoSalesRegisteredException;
 import org.example.exceptions.ProductNotFoundException;
 import org.example.exceptions.SaleAlreadyExistsException;
 import org.example.exceptions.SalesmanNotFoundException;
@@ -39,10 +40,10 @@ public class StoreService {
         saleRepository.addSale(newSale);
     }
 
-    public int calculateCommission(int salesmanId) throws SalesmanNotFoundException {
+    public int calculateCommission(int salesmanId) throws SalesmanNotFoundException, NoSalesRegisteredException {
         // Validate if there are any sales
         if (saleRepository.getAll().isEmpty()) {
-            throw new IllegalArgumentException("No sales registered.");
+            throw new NoSalesRegisteredException("No sales registered.");
         }
 
         // Validate if there is any Salesman with that id
@@ -60,7 +61,7 @@ public class StoreService {
 
         //If there are no sales for that salesman
         if (prices.isEmpty()) {
-            throw new IllegalArgumentException("No sales registered for salesman with id " + salesmanId);
+            throw new NoSalesRegisteredException("No sales registered for salesman with id " + salesmanId);
         }
 
         // Calculate commission
