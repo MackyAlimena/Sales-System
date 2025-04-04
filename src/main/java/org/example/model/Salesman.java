@@ -13,12 +13,12 @@ public class Salesman {
     }
 
     //Get salesman id
-    public int getSalesman_id() {
+    public int getSalesmanId() {
         return salesman_id;
     }
 
     //Set salesman id
-    public void setSalesman_id(int salesman_id) {
+    public void setSalesmanId(int salesman_id) {
         this.salesman_id = salesman_id;
     }
 
