@@ -1,5 +1,6 @@
 package org.example.Repositories;
 
+import org.example.exceptions.SalesmanNotFoundException;
 import org.example.model.Salesman;
 
 import java.util.ArrayList;
@@ -30,9 +31,14 @@ public class SalesmanRepository {
         salesmen.remove(salesmanId);
     }
 
-    public Salesman getSalesmanById(int id) {
-        return salesmen.get(id);
+    public Salesman getSalesmanById(int salesmanId) throws SalesmanNotFoundException {
+        Salesman salesman = salesmen.get(salesmanId);
+        if (salesman == null) {
+            throw new SalesmanNotFoundException(salesmanId);
+        }
+        return salesman;
     }
+
 
     public List<Salesman> getAll() {
         return new ArrayList<>(salesmen.values());

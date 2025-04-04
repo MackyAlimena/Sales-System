@@ -4,6 +4,7 @@ import org.example.Repositories.ProductRepository;
 import org.example.Repositories.SaleRepository;
 import org.example.Repositories.SalesmanRepository;
 import org.example.exceptions.ProductNotFoundException;
+import org.example.exceptions.SalesmanNotFoundException;
 import org.example.model.Product;
 import org.example.model.Sale;
 import org.example.model.Salesman;
@@ -24,30 +25,27 @@ public class StoreService {
         this.saleRepository = saleRepository;
     }
 
-    public void registerSale(int saleId, int productId, int salesmanId) throws ProductNotFoundException {
+    public void registerSale(int saleId, int productId, int salesmanId) throws ProductNotFoundException, SalesmanNotFoundException {
         if (saleRepository.existsById(saleId)) {
             throw new IllegalArgumentException("Sale with id " + saleId + " already exists.");
         }
         Product product = productRepository.getProductById(productId);
 
         Salesman salesman = salesmanRepository.getSalesmanById(salesmanId);
-        if (salesman == null) {
-            throw new IllegalArgumentException("No one with id" + salesmanId + " works at the store.");
-        }
+
         Sale newSale = new Sale(saleId, product, salesman);
         saleRepository.addSale(newSale);
     }
 
-    public int calculateCommission(int salesmanId) {
+    public int calculateCommission(int salesmanId) throws SalesmanNotFoundException {
         // Validate if there are any sales
         if (saleRepository.getAll().isEmpty()) {
             throw new IllegalArgumentException("No sales registered.");
         }
 
         // Validate if there is any Salesman with that id
-        if (!salesmanRepository.existsById(salesmanId)) {
-            throw new IllegalArgumentException("Salesman with id " + salesmanId + " does not exist.");
-        }
+        salesmanRepository.getSalesmanById(salesmanId);
+
 
         // Filter sales by salesman
         List<Sale> allSales = saleRepository.getAll();
