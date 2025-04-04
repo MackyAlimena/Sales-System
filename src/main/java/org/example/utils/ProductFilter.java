@@ -23,7 +23,7 @@ public class ProductFilter {
         return products.stream()
                 .filter(product -> product.getProductName().equalsIgnoreCase(name.toLowerCase()))
                 .collect(Collectors.toList());
-        }
     }
-
 }
+
+
