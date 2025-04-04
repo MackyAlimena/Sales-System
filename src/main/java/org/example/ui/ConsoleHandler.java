@@ -3,6 +3,7 @@ package org.example.ui;
 import org.example.service.StoreService;
 import org.example.ui.cases.AddProductCase;
 import org.example.ui.cases.AddSalesmanCase;
+import org.example.ui.cases.CalculateCommissionCase;
 import org.example.ui.cases.RegisterSaleCase;
 
 import java.util.Scanner;
@@ -35,7 +36,8 @@ public class ConsoleHandler {
                 case 1 -> new AddProductCase(storeService).execute(scanner);
                 case 2 -> new AddSalesmanCase(storeService).execute(scanner);
                 case 3 -> new RegisterSaleCase(storeService).execute(scanner);
-                case 4 -> {
+                case 4 -> new CalculateCommissionCase(storeService).execute(scanner);
+                case 5 -> {
                     running = false;
                     System.out.println("👋 GoodBye...");
                 }
