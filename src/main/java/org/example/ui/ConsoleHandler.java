@@ -3,6 +3,7 @@ package org.example.ui;
 import org.example.service.StoreService;
 import org.example.ui.cases.AddProductCase;
 import org.example.ui.cases.AddSalesmanCase;
+import org.example.ui.cases.RegisterSaleCase;
 
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class ConsoleHandler {
             System.out.println("2. Add Salesman");
             System.out.println("3. Register Sale");
             System.out.println("4. Calculate Commission");
-            System.out.println("5. Search Products by Category");
+            System.out.println("5. Search Products");
             System.out.println("6. Exit");
             System.out.print("Choose an option: ");
 
@@ -33,7 +34,8 @@ public class ConsoleHandler {
             switch (choice) {
                 case 1 -> new AddProductCase(storeService).execute(scanner);
                 case 2 -> new AddSalesmanCase(storeService).execute(scanner);
-                case 3 -> {
+                case 3 -> new RegisterSaleCase(storeService).execute(scanner);
+                case 4 -> {
                     running = false;
                     System.out.println("👋 GoodBye...");
                 }
