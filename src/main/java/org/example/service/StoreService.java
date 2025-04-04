@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.Repositories.ProductRepository;
 import org.example.Repositories.SaleRepository;
 import org.example.Repositories.SalesmanRepository;
+import org.example.exceptions.ProductNotFoundException;
 import org.example.model.Product;
 import org.example.model.Sale;
 import org.example.model.Salesman;
@@ -23,14 +24,12 @@ public class StoreService {
         this.saleRepository = saleRepository;
     }
 
-    public void registerSale(int saleId, int productId, int salesmanId) {
+    public void registerSale(int saleId, int productId, int salesmanId) throws ProductNotFoundException {
         if (saleRepository.existsById(saleId)) {
             throw new IllegalArgumentException("Sale with id " + saleId + " already exists.");
         }
         Product product = productRepository.getProductById(productId);
-        if (product == null) {
-            throw new IllegalArgumentException("Product with id " + productId + " does not exist.");
-        }
+
         Salesman salesman = salesmanRepository.getSalesmanById(salesmanId);
         if (salesman == null) {
             throw new IllegalArgumentException("No one with id" + salesmanId + " works at the store.");

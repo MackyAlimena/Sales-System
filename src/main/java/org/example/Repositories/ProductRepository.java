@@ -1,5 +1,6 @@
 package org.example.Repositories;
 
+import org.example.exceptions.ProductNotFoundException;
 import org.example.model.Product;
 
 import java.util.ArrayList;
@@ -33,9 +34,14 @@ public class ProductRepository {
         products.remove(productId);
     }
 
-    public Product getProductById(int productId) {
-        return products.get(productId);
+    public Product getProductById(int productId) throws ProductNotFoundException {
+        Product product = products.get(productId);
+        if (product == null) {
+            throw new ProductNotFoundException(productId);
+        }
+        return product;
     }
+
 
     public List<Product> getAll() {
         return new ArrayList<>(products.values());
