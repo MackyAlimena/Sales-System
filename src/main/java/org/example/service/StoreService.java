@@ -70,6 +70,8 @@ public class StoreService {
             total += price;
         }
 
+        //In this model i consider that a sale is a product sold
+        //In a further detailed system, i would add a quantity to sale and a stock for product
         return prices.size() > 2 ? total * 10 / 100 : total * 5 / 100;
     }
 
