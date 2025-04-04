@@ -6,7 +6,7 @@ public class Product {
     //Product at the store
     public int product_id; //primary key, unique
     private String product_name;
-    private int price;
+    public int price;
     private final Categories category;
 
     public Product(int product_id, String product_name, int price, Categories category) {
