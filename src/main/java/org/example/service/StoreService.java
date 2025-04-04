@@ -4,6 +4,7 @@ import org.example.Repositories.ProductRepository;
 import org.example.Repositories.SaleRepository;
 import org.example.Repositories.SalesmanRepository;
 import org.example.exceptions.ProductNotFoundException;
+import org.example.exceptions.SaleAlreadyExistsException;
 import org.example.exceptions.SalesmanNotFoundException;
 import org.example.model.Product;
 import org.example.model.Sale;
@@ -25,10 +26,11 @@ public class StoreService {
         this.saleRepository = saleRepository;
     }
 
-    public void registerSale(int saleId, int productId, int salesmanId) throws ProductNotFoundException, SalesmanNotFoundException {
+    public void registerSale(int saleId, int productId, int salesmanId) throws ProductNotFoundException, SalesmanNotFoundException, SaleAlreadyExistsException {
         if (saleRepository.existsById(saleId)) {
-            throw new IllegalArgumentException("Sale with id " + saleId + " already exists.");
+            throw new SaleAlreadyExistsException(saleId);
         }
+
         Product product = productRepository.getProductById(productId);
 
         Salesman salesman = salesmanRepository.getSalesmanById(salesmanId);
