@@ -4,6 +4,7 @@ import org.example.exceptions.InvalidCategoryException;
 import org.example.model.Product;
 import org.example.model.productCategories.Categories;
 import org.example.service.StoreService;
+import org.example.ui.cases.consoleUtils.printCategories;
 import org.example.utils.ProductFilter;
 import org.example.utils.ProductSorter;
 
@@ -39,6 +40,7 @@ public class SearchProductsCase {
             try {
                 switch (option) {
                     case 1 -> {
+                        printCategories.printAvailableCategories();
                         System.out.print("Enter category: ");
                         String category = scanner.nextLine();
                         result = ProductFilter.filterByCategory(storeService.getAllProducts(), category);

@@ -2,6 +2,7 @@ package org.example.ui.cases;
 
 import org.example.exceptions.InvalidCategoryException;
 import org.example.service.StoreService;
+import org.example.ui.cases.consoleUtils.printCategories;
 
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ public class AddProductCase {
             System.out.print("Enter product price: ");
             int price = Integer.parseInt(scanner.nextLine());
 
+            printCategories.printAvailableCategories();
             System.out.print("Enter product category: ");
             String category = scanner.nextLine();
 
