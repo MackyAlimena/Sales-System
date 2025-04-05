@@ -1,10 +1,7 @@
 package org.example.ui;
 
 import org.example.service.StoreService;
-import org.example.ui.cases.AddProductCase;
-import org.example.ui.cases.AddSalesmanCase;
-import org.example.ui.cases.CalculateCommissionCase;
-import org.example.ui.cases.RegisterSaleCase;
+import org.example.ui.cases.*;
 
 import java.util.Scanner;
 
@@ -21,7 +18,7 @@ public class ConsoleHandler {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n📦 Sales System Menu");
+            System.out.println("\n Sales System Menu");
             System.out.println("1. Add Product");
             System.out.println("2. Add Salesman");
             System.out.println("3. Register Sale");
@@ -37,7 +34,8 @@ public class ConsoleHandler {
                 case 2 -> new AddSalesmanCase(storeService).execute(scanner);
                 case 3 -> new RegisterSaleCase(storeService).execute(scanner);
                 case 4 -> new CalculateCommissionCase(storeService).execute(scanner);
-                case 5 -> {
+                case 5 -> new SearchProductsCase(storeService).execute(scanner);
+                case 6 -> {
                     running = false;
                     System.out.println("👋 GoodBye...");
                 }

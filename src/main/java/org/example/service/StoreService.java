@@ -90,4 +90,9 @@ public class StoreService {
         salesmanRepository.addSalesman(salesman);
     }
 
+    public List<Product> getAllProducts() {
+        return productRepository.getAll();
+    }
+
+
 }
