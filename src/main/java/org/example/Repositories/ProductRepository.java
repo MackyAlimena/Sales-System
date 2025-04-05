@@ -1,5 +1,6 @@
 package org.example.Repositories;
 
+import org.example.exceptions.ProductAlreadyExistsException;
 import org.example.exceptions.ProductNotFoundException;
 import org.example.model.Product;
 
@@ -18,7 +19,10 @@ public class ProductRepository {
         this.products = new HashMap<>();
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(Product product) throws ProductAlreadyExistsException {
+        if (products.containsKey(product.getProductId())) {
+            throw new ProductAlreadyExistsException(product.getProductId());
+        }
         products.put(product.getProductId(), product);
     }
 

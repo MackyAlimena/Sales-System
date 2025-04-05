@@ -73,7 +73,7 @@ public class StoreService {
         return prices.size() > 2 ? total * 10 / 100 : total * 5 / 100;
     }
 
-    public void addProduct(int id, String name, int price, String category) throws InvalidCategoryException {
+    public void addProduct(int id, String name, int price, String category) throws InvalidCategoryException, ProductAlreadyExistsException {
         Categories cat;
         try {
             cat = Categories.valueOf(category.toUpperCase());

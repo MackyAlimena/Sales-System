@@ -50,4 +50,15 @@ public class Product {
     public Categories getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "ID=" + product_id +
+                ", Name='" + product_name + '\'' +
+                ", Price=$" + price +
+                ", Category=" + category +
+                '}';
+    }
+
 }
