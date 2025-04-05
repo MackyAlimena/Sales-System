@@ -25,7 +25,7 @@ public class SearchProductsCase {
             System.out.println("\n Search Products by...");
             System.out.println("1. Category");
             System.out.println("2. Price Range");
-            System.out.println("3. Name Contains");
+            System.out.println("3. Name");
             System.out.println("4. Sort by Price Asc");
             System.out.println("5. Sort by Price Desc");
             System.out.println("6. Sort by Name");
@@ -53,11 +53,16 @@ public class SearchProductsCase {
                         int max = Integer.parseInt(scanner.nextLine());
                         result = ProductFilter.filterByPriceRange(storeService.getAllProducts(), min, max);
                     }
-
+                    case 3 -> {
+                        System.out.print("Enter name keyword: ");
+                        String name = scanner.nextLine();
+                        result = ProductFilter.filterByName(storeService.getAllProducts(), name);
+                    }
                     case 4 -> result = ProductSorter.sortByPriceAsc(storeService.getAllProducts());
                     case 5 -> result = ProductSorter.sortByPriceDesc(storeService.getAllProducts());
                     case 6 -> result = ProductSorter.sortByNameAsc(storeService.getAllProducts());
                     case 7 -> result = storeService.getAllProducts();
+                    case 8 -> back = true;
                     default -> System.out.println("❌ Invalid option.");
                 }
 
